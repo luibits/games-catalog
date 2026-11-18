@@ -3,18 +3,18 @@ services:
   # Servidor Apache + PHP
   web:
     build: .
-    container_name: php_apache
+    container_name: checkpoint_php
     ports:
-      - "80:80"
+      - "8082:80"
     volumes:
-      - ./src:/var/www/html
+      - ./:/var/www/html
     depends_on:
       - db
 
   # Banco de Dados MySQL
   db:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: checkpoint_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_password
@@ -24,12 +24,12 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql # PERSISTÊNCIA DENTRO DO PROJETO
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   # phpMyAdmin
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: phpmyadmin
+    container_name: checkpoint_phpmyadmin
     links:
       - db
     environment:
