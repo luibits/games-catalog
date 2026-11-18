@@ -1,7 +1,8 @@
 <?php
-    session_start();
+   
     //Carregar as configurações e a conexão antes de tudo.
     require_once __DIR__ . '/../backend/config/conexao.php';
+    require_once __DIR__ . '/../backend/auth/verificar_login.php';
 
     // Ativamos erros para sabermos se algo falha no banco
     ini_set('display_errors', 1);

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,6 +20,48 @@
 <body>
 
     <main class="container px-3">
+
+        <?php
+        $mensagem = '';
+        $icone = '';
+
+        if (isset($_GET['erro'])) {
+
+            switch ($_GET['erro']) {
+
+                case 'campos':
+                    $mensagem = 'Preencha todos os campos!';
+                    break;
+
+                case 'credenciais':
+                    $mensagem = 'Usuário ou senha incorretos!';
+                    break;
+
+                case 'servidor':
+                    $mensagem = 'Erro interno. Tente novamente!';
+                    break;
+
+                default:
+                    $mensagem = 'Não foi possível realizar o login.';
+            }
+
+            $icone = 'alert-circle';
+        }
+        ?>
+
+        <?php if (!empty($mensagem)): ?>
+            <div class="toast-notificacao" id="notificacao">
+
+                <i data-lucide="<?= $icone ?>"></i>
+
+                <span><?= htmlspecialchars($mensagem) ?></span>
+
+                <button type="button" id="fecharNotificacao" aria-label="Fechar">
+                    &times;
+                </button>
+
+            </div>
+        <?php endif; ?>
 
         <div class="login-card mx-auto">
 
@@ -91,6 +132,8 @@
     </main>
 
     <script>lucide.createIcons();</script>
+    <script src="/frontend//assets/js/notificacao.js"></script>
 
 </body>
+
 </html>
