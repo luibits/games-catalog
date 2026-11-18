@@ -55,6 +55,26 @@ $jogo = $_SESSION['jogo_destaque'] ?? null;
 
                     </div>
 
+                    <div class="banner-info">
+                        <div class="banner-avaliacao">
+                            <i data-lucide="star"></i>
+                            <span>
+                                <?= number_format($jogo['rating'] ?? 0, 1, ',', '.') ?>/5
+                            </span>
+                        </div>
+
+                        <div class="banner-generos">
+                            <?php foreach ($jogo['genres'] ?? [] as $genero): ?>
+
+                                <span>
+                                    <?= htmlspecialchars($genero['name']) ?>
+                                </span>
+
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+
                 <?php else: ?>
 
                     <div class="banner-conteudo">
