@@ -1,5 +1,7 @@
 <?php
+session_start();
 
+require_once __DIR__ . '/../services/rawg.php';
 require_once __DIR__ . '/../config/conexao.php';
 
 // Verifica se a requisição foi enviada pelo método POST
@@ -35,11 +37,12 @@ try {
         exit;
     }
 
-    // Inicia a sessão do usuário
-    session_start();
+    session_regenerate_id(true);
 
     $_SESSION['usuario_id'] = $dadosUsuario['id'];
     $_SESSION['usuario'] = $dadosUsuario['usuario'];
+
+    $_SESSION['jogo_destaque'] = buscarJogoDestaque();
 
     // Redireciona para a página inicial
     header('Location: ../../frontend/index.php');

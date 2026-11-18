@@ -8,6 +8,8 @@ services:
       - "8082:80"
     volumes:
       - ./:/var/www/html
+    env_file:
+      - .env
     depends_on:
       - db
 

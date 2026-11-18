@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../backend/auth/verificar_login.php';
+
+$jogo = $_SESSION['jogo_destaque'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +29,43 @@ require_once __DIR__ . '/../backend/auth/verificar_login.php';
         <?php include __DIR__ . '/components/header.php'; ?>
 
         <main class="conteudo">
-            <h1>Bem-vindo ao Checkpoint!</h1>
+
+            <section class="banner-destaque" style="background-image: linear-gradient(90deg, rgba(16,16,20,.98), rgba(16,16,20,.4)), url('<?= htmlspecialchars($jogo['background_image'] ?? '') ?>')">
+
+                <?php if ($jogo): ?>
+
+                    <div class="banner-conteudo">
+
+                        <span class="banner-tag">
+                            SEU PRÓXIMO FAVORITO ESTÁ AQUI
+                        </span>
+
+                        <h1>Descubra seu próximo jogo.</h1>
+
+                        <p>
+                            Que tal conhecer
+                            <strong><?= htmlspecialchars($jogo['name']) ?></strong>?
+                            Explore novos mundos e encontre sua próxima aventura.
+                        </p>
+
+                        <a href="#" class="btn-explorar">
+                            <i data-lucide="compass"></i>
+                            Explorar catálogo
+                        </a>
+
+                    </div>
+
+                <?php else: ?>
+
+                    <div class="banner-conteudo">
+                        <h1>Descubra seu próximo jogo.</h1>
+                        <p>Explore novos mundos e encontre sua próxima aventura.</p>
+                    </div>
+
+                <?php endif; ?>
+
+            </section>
+
         </main>
 
     </div>
@@ -37,4 +75,5 @@ require_once __DIR__ . '/../backend/auth/verificar_login.php';
     </script>
 
 </body>
+
 </html>
