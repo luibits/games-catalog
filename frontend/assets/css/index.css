@@ -1,0 +1,37 @@
+
+:root {
+    --bg-primary: #101014;
+    --bg-secondary: #191820;
+    --purple-primary: #8B5CF6;
+    --purple-hover: #7C3AED;
+    --text-primary: #EDEAF5;
+    --text-secondary: #A5A1B2;
+    --border-color: #302D3B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: Arial, sans-serif;
+}
+
+
+/* Área principal da página */
+
+.conteudo-principal {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    min-height: 100vh;
+}
+
+/* Conteúdo abaixo do cabeçalho */
+
+.conteudo {
+    padding: 35px;
+}
