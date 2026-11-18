@@ -6,7 +6,7 @@ function buscarJogosDestaque() {
 
     $url = 'https://api.rawg.io/api/games?' . http_build_query([
         'key' => $apiKey,
-        'page_size' => 10,
+        'page_size' => 20,
         'ordering' => '-added'
     ]);
 
