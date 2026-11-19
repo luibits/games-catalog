@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/../backend/auth/verificar_login.php';
+require_once __DIR__ . '/../backend/services/rawg.php';
 
 $jogo = $_SESSION['jogo_destaque'] ?? null;
+
+// Busca jogos para o catálogo
+$jogos = buscarJogosCatalogo(12);
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +52,7 @@ $jogo = $_SESSION['jogo_destaque'] ?? null;
                             Explore novos mundos e encontre sua próxima aventura.
                         </p>
 
-                        <a href="#" class="btn-explorar">
+                        <a href="#catalogo" class="btn-explorar">
                             <i data-lucide="compass"></i>
                             Explorar catálogo
                         </a>
@@ -86,13 +90,36 @@ $jogo = $_SESSION['jogo_destaque'] ?? null;
 
             </section>
 
+            </section>
+
+            <!-- Catálogo de jogos -->
+            <section class="secao-catalogo" id="catalogo">
+
+                <div class="catalogo-cabecalho">
+                    <h2>Jogos em destaque</h2>
+                    <p>Descubra jogos que merecem sua atenção.</p>
+                </div>
+
+                <div class="catalogo-grid">
+
+                    <?php foreach ($jogos as $jogoCatalogo): ?>
+
+                        <?php include __DIR__ . '/components/card_jogo.php'; ?>
+
+                    <?php endforeach; ?>
+
+                </div>
+
+            </section>
+
+        </main>
+
         </main>
 
     </div>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
+    <script src="assets/js/scroll.js"></script>
 
 </body>
 

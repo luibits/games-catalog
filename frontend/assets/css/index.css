@@ -15,6 +15,10 @@
     box-sizing: border-box;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -187,4 +191,103 @@ body {
 /* Efeito ao clicar */
 .btn-explorar:active {
     transform: translateY(-1px);
+}
+
+
+/* Seção do catálogo */
+.secao-catalogo {
+    margin-top: 35px;
+}
+
+.catalogo-cabecalho {
+    margin-bottom: 22px;
+}
+
+.catalogo-cabecalho h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.catalogo-cabecalho p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Grade dos jogos */
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* Card individual */
+.card-jogo {
+    overflow: hidden;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.card-jogo:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple-primary);
+}
+
+/* Área da capa */
+.card-jogo-capa {
+    height: 220px;
+    overflow: hidden;
+    background-color: var(--bg-tertiary);
+}
+
+.card-jogo-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.capa-indisponivel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.capa-indisponivel svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* Informações do jogo */
+.card-jogo-info {
+    padding: 15px;
+}
+
+.card-jogo-info h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.card-jogo-detalhes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.card-jogo-nota {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-jogo-nota svg {
+    width: 15px;
+    height: 15px;
+    color: #FBBF24;
 }

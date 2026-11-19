@@ -31,3 +31,16 @@ function buscarJogoDestaque() {
 
     return $jogos[array_rand($jogos)];
 }
+
+function buscarJogosCatalogo($quantidade = 12) {
+
+    $jogos = buscarJogosDestaque();
+
+    if (empty($jogos)) {
+        return [];
+    }
+
+    shuffle($jogos);
+
+    return array_slice($jogos, 0, $quantidade);
+}
