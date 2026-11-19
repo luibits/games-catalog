@@ -60,6 +60,9 @@ body {
     background-position: center;
 }
 
+
+
+
 .banner-info {
     position: absolute;
     right: 45px;
@@ -140,4 +143,48 @@ body {
     font-size: 11px;
     color: var(--text-secondary);
     font-weight: 500;
+}
+
+/* Botão explorar catálogo */
+.btn-explorar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    margin-top: 12px;
+    padding: 8px 18px;
+
+    background-color: var(--purple-primary);
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    transition: all 0.3s ease;
+}
+
+/* Ícone */
+.btn-explorar svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Efeito ao passar o mouse */
+.btn-explorar:hover {
+    background-color: var(--purple-hover);
+    color: #ffffff;
+
+    transform: translateY(-.5px);
+
+    box-shadow: 0 3px 10px rgba(139, 92, 246, 0.35);
+}
+
+/* Efeito ao clicar */
+.btn-explorar:active {
+    transform: translateY(-1px);
 }
