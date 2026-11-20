@@ -44,3 +44,25 @@ function buscarJogosCatalogo($quantidade = 12) {
 
     return array_slice($jogos, 0, $quantidade);
 }
+
+
+function buscarJogosPorNome($termo) {
+
+    $apiKey = getenv('RAWG_API_KEY');
+
+    $url = 'https://api.rawg.io/api/games?' . http_build_query([
+        'key' => $apiKey,
+        'search' => $termo,
+        'page_size' => 12
+    ]);
+
+    $resposta = @file_get_contents($url);
+
+    if ($resposta === false) {
+        return [];
+    }
+
+    $dados = json_decode($resposta, true);
+
+    return $dados['results'] ?? [];
+}

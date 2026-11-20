@@ -4,8 +4,15 @@ require_once __DIR__ . '/../backend/services/rawg.php';
 
 $jogo = $_SESSION['jogo_destaque'] ?? null;
 
-// Busca jogos para o catálogo
-$jogos = buscarJogosCatalogo(12);
+$termoBusca = trim($_GET['busca'] ?? '');
+
+// Se houver uma pesquisa, busca na RAWG.
+// Caso contrário, exibe os jogos em destaque.
+if (!empty($termoBusca)) {
+    $jogos = buscarJogosPorNome($termoBusca);
+} else {
+    $jogos = buscarJogosCatalogo(12);
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,92 +41,119 @@ $jogos = buscarJogosCatalogo(12);
 
         <main class="conteudo">
 
-            <section class="banner-destaque" style="background-image: linear-gradient(90deg, rgba(16,16,20,.98), rgba(16,16,20,.4)), url('<?= htmlspecialchars($jogo['background_image'] ?? '') ?>')">
+            <?php if (empty($termoBusca)): ?>
+                <section class="banner-destaque" style="background-image: linear-gradient(90deg, rgba(16,16,20,.98), rgba(16,16,20,.4)), url('<?= htmlspecialchars($jogo['background_image'] ?? '') ?>')">
 
-                <?php if ($jogo): ?>
+                    <?php if ($jogo): ?>
 
-                    <div class="banner-conteudo">
+                        <div class="banner-conteudo">
 
-                        <span class="banner-tag">
-                            SEU PRÓXIMO FAVORITO ESTÁ AQUI
-                        </span>
+                            <span class="banner-tag">
+                                SEU PRÓXIMO FAVORITO ESTÁ AQUI
+                            </span>
 
-                        <h1>Descubra seu próximo jogo.</h1>
+                            <h1>Descubra seu próximo jogo.</h1>
+
+                            <p>
+                                Que tal conhecer
+                                <strong><?= htmlspecialchars($jogo['name']) ?></strong>?
+                                Explore novos mundos e encontre sua próxima aventura.
+                            </p>
+
+                            <a href="#catalogo" class="btn-explorar">
+                                <i data-lucide="compass"></i>
+                                Explorar catálogo
+                            </a>
+
+                        </div>
+
+                        <div class="banner-info">
+                            <div class="banner-avaliacao">
+                                <i data-lucide="star"></i>
+                                <span>
+                                    <?= number_format($jogo['rating'] ?? 0, 1, ',', '.') ?>/5
+                                </span>
+                            </div>
+
+                            <div class="banner-generos">
+                                <?php foreach ($jogo['genres'] ?? [] as $genero): ?>
+
+                                    <span>
+                                        <?= htmlspecialchars($genero['name']) ?>
+                                    </span>
+
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+
+                    <?php else: ?>
+
+                        <div class="banner-conteudo">
+                            <h1>Descubra seu próximo jogo.</h1>
+                            <p>Explore novos mundos e encontre sua próxima aventura.</p>
+                        </div>
+
+                    <?php endif; ?>
+
+                </section>
+            <?php endif; ?>
+
+
+            <!-- Catálogo de jogos -->
+            <section class="secao-catalogo" id="catalogo">
+                <div class="catalogo-cabecalho">
+
+                    <?php if (!empty($termoBusca)): ?>
+
+                        <h2>Resultados da pesquisa</h2>
 
                         <p>
-                            Que tal conhecer
-                            <strong><?= htmlspecialchars($jogo['name']) ?></strong>?
-                            Explore novos mundos e encontre sua próxima aventura.
+                            Resultados encontrados para:
+                            <?= htmlspecialchars($termoBusca) ?>
                         </p>
 
-                        <a href="#catalogo" class="btn-explorar">
-                            <i data-lucide="compass"></i>
-                            Explorar catálogo
-                        </a>
+                    <?php else: ?>
+
+                        <h2>Jogos em destaque</h2>
+
+                        <p>Descubra jogos que merecem sua atenção.</p>
+
+                    <?php endif; ?>
+
+                </div>
+
+                <?php if (!empty($jogos)): ?>
+
+                    <div class="catalogo-grid">
+
+                        <?php foreach ($jogos as $jogoCatalogo): ?>
+
+                            <?php include __DIR__ . '/components/card_jogo.php'; ?>
+
+                        <?php endforeach; ?>
 
                     </div>
-
-                    <div class="banner-info">
-                        <div class="banner-avaliacao">
-                            <i data-lucide="star"></i>
-                            <span>
-                                <?= number_format($jogo['rating'] ?? 0, 1, ',', '.') ?>/5
-                            </span>
-                        </div>
-
-                        <div class="banner-generos">
-                            <?php foreach ($jogo['genres'] ?? [] as $genero): ?>
-
-                                <span>
-                                    <?= htmlspecialchars($genero['name']) ?>
-                                </span>
-
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
 
                 <?php else: ?>
 
-                    <div class="banner-conteudo">
-                        <h1>Descubra seu próximo jogo.</h1>
-                        <p>Explore novos mundos e encontre sua próxima aventura.</p>
-                    </div>
+                    <p class="sem-resultados">
+                        Nenhum jogo encontrado. Tente pesquisar por outro título.
+                    </p>
 
                 <?php endif; ?>
 
             </section>
 
-            </section>
-
-            <!-- Catálogo de jogos -->
-            <section class="secao-catalogo" id="catalogo">
-
-                <div class="catalogo-cabecalho">
-                    <h2>Jogos em destaque</h2>
-                    <p>Descubra jogos que merecem sua atenção.</p>
-                </div>
-
-                <div class="catalogo-grid">
-
-                    <?php foreach ($jogos as $jogoCatalogo): ?>
-
-                        <?php include __DIR__ . '/components/card_jogo.php'; ?>
-
-                    <?php endforeach; ?>
-
-                </div>
-
-            </section>
-
-        </main>
-
         </main>
 
     </div>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+    </script>
     <script src="assets/js/scroll.js"></script>
+    <script src="assets/js/pesquisa.js"></script>
 
 </body>
 
