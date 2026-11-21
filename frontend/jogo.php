@@ -2,12 +2,14 @@
 
 require_once __DIR__ . '/../backend/auth/verificar_login.php';
 require_once __DIR__ . '/../backend/services/rawg.php';
+require_once __DIR__ . '/../backend/services/youtube.php';
 
 // Recebe o ID enviado pela URL
 $idJogo = $_GET['id'] ?? null;
 
 // Busca os detalhes do jogo na RAWG
 $jogo = $idJogo ? buscarJogoPorId($idJogo) : null;
+$trailer = $jogo ? buscarTrailerJogo($jogo['name']) : null;
 
 ?>
 
@@ -133,6 +135,29 @@ $jogo = $idJogo ? buscarJogoPorId($idJogo) : null;
                                     <?= htmlspecialchars($descricao) ?>
                                 </p>
                             </section>
+                        </section>
+
+                        <section class="jogo-trailer">
+
+                            <h2>Trailer oficial</h2>
+
+                            <?php if ($trailer): ?>
+
+                                <div class="trailer-video">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/<?= htmlspecialchars($trailer['id']) ?>"
+                                        title="<?= htmlspecialchars($trailer['titulo']) ?>"
+                                        frameborder="0"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+
+                            <?php else: ?>
+
+                                <p>Trailer não disponível para este jogo.</p>
+
+                            <?php endif; ?>
+
                         </section>
 
                     </div>
