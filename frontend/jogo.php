@@ -172,22 +172,19 @@ $trailer = $jogo ? buscarTrailerJogo($jogo['name']) : null;
                                     name="jogo_id"
                                     value="<?= htmlspecialchars($jogo['id']) ?>">
 
-                                <div class="campo-avaliacao">
-                                    <label for="nota">Sua nota</label>
 
-                                    <select name="nota" id="nota" required>
-                                        <option value="">Selecione uma nota</option>
-                                        <option value="0.5">0,5</option>
-                                        <option value="1">1,0</option>
-                                        <option value="1.5">1,5</option>
-                                        <option value="2">2,0</option>
-                                        <option value="2.5">2,5</option>
-                                        <option value="3">3,0</option>
-                                        <option value="3.5">3,5</option>
-                                        <option value="4">4,0</option>
-                                        <option value="4.5">4,5</option>
-                                        <option value="5">5,0</option>
-                                    </select>
+                                <div class="campo-avaliacao">
+                                    <label>Sua nota</label>
+
+                                    <div class="estrelas" id="estrelas">
+                                        <button type="button" data-nota="1">★</button>
+                                        <button type="button" data-nota="2">★</button>
+                                        <button type="button" data-nota="3">★</button>
+                                        <button type="button" data-nota="4">★</button>
+                                        <button type="button" data-nota="5">★</button>
+                                    </div>
+
+                                    <input type="hidden" name="nota" id="nota" required>
                                 </div>
 
                                 <div class="campo-avaliacao">
@@ -227,6 +224,7 @@ $trailer = $jogo ? buscarTrailerJogo($jogo['name']) : null;
     <script>
         lucide.createIcons();
     </script>
+    <script src="/frontend/assets/js/avaliacao.js"></script>
 
 </body>
 

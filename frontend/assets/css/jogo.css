@@ -252,7 +252,7 @@
     resize: vertical;
 }
 
-.jogo-avaliacao button {
+.jogo-avaliacao form > button[type="submit"] {
     padding: 12px 22px;
     background: var(--purple-primary);
     color: white;
@@ -263,6 +263,29 @@
     transition: background 0.2s ease;
 }
 
-.jogo-avaliacao button:hover {
+.jogo-avaliacao form > button[type="submit"]:hover {
     background: var(--purple-hover);
+}
+
+/* AVALIAÇÃO POR ESTRELAS */
+
+.estrelas {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.estrelas button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 38px;
+    line-height: 1;
+    color: #514b60;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.estrelas button:hover {
+    transform: scale(1.15);
 }
