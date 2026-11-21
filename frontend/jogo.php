@@ -160,6 +160,53 @@ $trailer = $jogo ? buscarTrailerJogo($jogo['name']) : null;
 
                         </section>
 
+
+                        <section class="jogo-avaliacao">
+
+                            <h2>Avalie este jogo</h2>
+
+                            <form action="../backend/routes/salvar_avaliacao.php" method="POST">
+
+                                <input
+                                    type="hidden"
+                                    name="jogo_id"
+                                    value="<?= htmlspecialchars($jogo['id']) ?>">
+
+                                <div class="campo-avaliacao">
+                                    <label for="nota">Sua nota</label>
+
+                                    <select name="nota" id="nota" required>
+                                        <option value="">Selecione uma nota</option>
+                                        <option value="0.5">0,5</option>
+                                        <option value="1">1,0</option>
+                                        <option value="1.5">1,5</option>
+                                        <option value="2">2,0</option>
+                                        <option value="2.5">2,5</option>
+                                        <option value="3">3,0</option>
+                                        <option value="3.5">3,5</option>
+                                        <option value="4">4,0</option>
+                                        <option value="4.5">4,5</option>
+                                        <option value="5">5,0</option>
+                                    </select>
+                                </div>
+
+                                <div class="campo-avaliacao">
+                                    <label for="comentario">Comentário (opcional)</label>
+
+                                    <textarea
+                                        name="comentario"
+                                        id="comentario"
+                                        placeholder="O que você achou deste jogo?"
+                                        rows="4"></textarea>
+                                </div>
+
+                                <button type="submit">Enviar avaliação</button>
+
+                            </form>
+
+                        </section>
+
+
                     </div>
 
                 </section>

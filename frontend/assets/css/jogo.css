@@ -204,3 +204,65 @@
     height: 100%;
     border: none;
 }
+
+
+.jogo-avaliacao {
+    margin-top: 40px;
+    padding: 28px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+}
+
+.jogo-avaliacao h2 {
+    font-size: 22px;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.campo-avaliacao {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.campo-avaliacao label {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.campo-avaliacao select,
+.campo-avaliacao textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+}
+
+.campo-avaliacao select:focus,
+.campo-avaliacao textarea:focus {
+    border-color: var(--purple-primary);
+}
+
+.campo-avaliacao textarea {
+    resize: vertical;
+}
+
+.jogo-avaliacao button {
+    padding: 12px 22px;
+    background: var(--purple-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.jogo-avaliacao button:hover {
+    background: var(--purple-hover);
+}
