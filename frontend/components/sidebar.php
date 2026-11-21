@@ -31,7 +31,7 @@
     </nav>
 
     <div class="sidebar-footer">
-        <a href="../backend/auth/logout.php" class="sidebar-link">
+        <a href="../backend/auth/logout.php" class="sidebar-link"  id="botaoSair">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>

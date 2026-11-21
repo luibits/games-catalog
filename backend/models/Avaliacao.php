@@ -76,4 +76,18 @@ class Avaliacao
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function excluir($usuarioId, $jogoId)
+    {
+        $sql = "DELETE FROM avaliacoes
+            WHERE usuario_id = :usuario_id
+            AND jogo_id = :jogo_id";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        return $stmt->execute([
+            ':usuario_id' => $usuarioId,
+            ':jogo_id' => $jogoId
+        ]);
+    }
 }

@@ -43,4 +43,13 @@ class AvaliacaoController
             $jogoId
         );
     }
+
+    public function excluir($usuarioId, $jogoId)
+    {
+        if ($jogoId <= 0) {
+            return false;
+        }
+
+        return $this->avaliacao->excluir($usuarioId, $jogoId);
+    }
 }

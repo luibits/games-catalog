@@ -44,6 +44,8 @@ if ($jogo) {
     <link rel="stylesheet" href="/frontend/assets/css/header.css">
     <link rel="stylesheet" href="/frontend/assets/css/sidebar.css">
     <link rel="stylesheet" href="/frontend/assets/css/jogo.css">
+    <link rel="stylesheet" href="/frontend/assets/css/modal_confirmacao.css">
+    <link rel="stylesheet" href="/frontend/assets/css/notificacao.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -181,7 +183,7 @@ if ($jogo) {
                                 <?= $minhaAvaliacao ? 'Edite sua avaliação' : 'Avalie este jogo' ?>
                             </h2>
 
-                            <form action="../backend/routes/salvar_avaliacao.php" method="POST">
+                            <form action="../backend/routes/salvar_avaliacao.php" method="POST" data-editar="<?= $minhaAvaliacao ? 'true' : 'false' ?>">
 
                                 <input
                                     type="hidden"
@@ -222,6 +224,26 @@ if ($jogo) {
                                 </button>
 
                             </form>
+
+                            <?php if ($minhaAvaliacao): ?>
+
+                                <form
+                                    action="../backend/routes/excluir_avaliacao.php"
+                                    method="POST"
+                                    id="formExcluirAvaliacao">
+
+                                    <input
+                                        type="hidden"
+                                        name="jogo_id"
+                                        value="<?= htmlspecialchars($jogo['id']) ?>">
+
+                                    <button type="submit" class="botao-excluir-avaliacao">
+                                        Excluir avaliação
+                                    </button>
+
+                                </form>
+
+                            <?php endif; ?>
 
                         </section>
 
@@ -298,10 +320,44 @@ if ($jogo) {
 
     </div>
 
+    <?php include __DIR__ . '/components/modal_confirmacao.php'; ?>
+
     <script>
         lucide.createIcons();
     </script>
     <script src="/frontend/assets/js/avaliacao.js"></script>
+    <script src="/frontend/assets/js/modal_confirmacao.js"></script>
+    <script src="/frontend/assets/js/notificacao.js"></script>
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+        const status = parametros.get('avaliacao');
+
+        const mensagens = {
+            sucesso: {
+                texto: 'Sua avaliação foi publicada com sucesso!',
+                tipo: 'sucesso'
+            },
+            atualizada: {
+                texto: 'Sua avaliação foi atualizada com sucesso!',
+                tipo: 'sucesso'
+            },
+            excluida: {
+                texto: 'Sua avaliação foi excluída com sucesso!',
+                tipo: 'sucesso'
+            },
+            erro: {
+                texto: 'Não foi possível realizar essa operação.',
+                tipo: 'erro'
+            }
+        };
+
+        if (mensagens[status]) {
+            mostrarNotificacao(
+                mensagens[status].texto,
+                mensagens[status].tipo
+            );
+        }
+    </script>
 
 </body>
 
