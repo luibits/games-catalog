@@ -1,17 +1,14 @@
 <?php
-$host = "db";
-$dbname = "checkpointdb";
-$user = "root";
-$pass = "root_password";
 
-try{
-    // DSN (Data Source Name)
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+$hostAtual = $_SERVER['HTTP_HOST'] ?? '';
+$hostAtual = explode(':', $hostAtual)[0];
 
-    // Ativa o modo de erro para exceções (ajuda no debug)
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-} catch (PDOException $error){
-    die("Erro ao conectar: " . $error->getMessage());
+// Verifica se está rodando localmente
+if (
+    $hostAtual === 'localhost' ||
+    $hostAtual === '127.0.0.1'
+) {
+    require_once __DIR__ . '/conexao.local.php';
+} else {
+    require_once __DIR__ . '/conexao.producao.php';
 }
-?>

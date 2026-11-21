@@ -1,8 +1,18 @@
+
 <?php
+
+$apiKeys = require __DIR__ . '/../config/api_keys.php';
+
+function obterChaveRawg() {
+
+    global $apiKeys;
+
+    return getenv('RAWG_API_KEY') ?: ($apiKeys['RAWG_API_KEY'] ?? '');
+}
 
 function buscarJogosDestaque() {
 
-    $apiKey = getenv('RAWG_API_KEY');
+    $apiKey = obterChaveRawg();
 
     $url = 'https://api.rawg.io/api/games?' . http_build_query([
         'key' => $apiKey,
@@ -10,7 +20,7 @@ function buscarJogosDestaque() {
         'ordering' => '-added'
     ]);
 
-    $resposta = file_get_contents($url);
+    $resposta = @file_get_contents($url);
 
     if ($resposta === false) {
         return [];
@@ -45,10 +55,9 @@ function buscarJogosCatalogo($quantidade = 12) {
     return array_slice($jogos, 0, $quantidade);
 }
 
-
 function buscarJogosPorNome($termo) {
 
-    $apiKey = getenv('RAWG_API_KEY');
+    $apiKey = obterChaveRawg();
 
     $url = 'https://api.rawg.io/api/games?' . http_build_query([
         'key' => $apiKey,
@@ -67,29 +76,24 @@ function buscarJogosPorNome($termo) {
     return $dados['results'] ?? [];
 }
 
-
 function buscarJogoPorId($id) {
 
-    $apiKey = getenv('RAWG_API_KEY');
+    $apiKey = obterChaveRawg();
 
-    // Verifica se o ID é válido
     if (!filter_var($id, FILTER_VALIDATE_INT) || $id <= 0) {
         return null;
     }
 
-    // Monta a URL da API
     $url = 'https://api.rawg.io/api/games/' . $id . '?' . http_build_query([
         'key' => $apiKey
     ]);
 
-    // Faz a requisição
     $resposta = @file_get_contents($url);
 
     if ($resposta === false) {
         return null;
     }
 
-    // Converte o JSON em array PHP
     $dados = json_decode($resposta, true);
 
     if (!is_array($dados) || isset($dados['detail'])) {

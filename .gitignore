@@ -7,3 +7,7 @@ mysql-data/
 # Arquivos temporários
 *.log
 *.sock
+
+backend/config/conexao.local.php
+backend/config/conexao.producao.php
+backend/config/api_keys.php
