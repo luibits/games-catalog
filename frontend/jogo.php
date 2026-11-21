@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../backend/auth/verificar_login.php';
 require_once __DIR__ . '/../backend/services/rawg.php';
 require_once __DIR__ . '/../backend/services/youtube.php';
+require_once __DIR__ . '/../backend/controllers/AvaliacaoController.php';
 
 // Recebe o ID enviado pela URL
 $idJogo = $_GET['id'] ?? null;
@@ -10,7 +11,12 @@ $idJogo = $_GET['id'] ?? null;
 // Busca os detalhes do jogo na RAWG
 $jogo = $idJogo ? buscarJogoPorId($idJogo) : null;
 $trailer = $jogo ? buscarTrailerJogo($jogo['name']) : null;
+$avaliacoes = [];
 
+if ($jogo) {
+    $controller = new AvaliacaoController($pdo);
+    $avaliacoes = $controller->buscarPorJogo($jogo['id']);
+}
 ?>
 
 
@@ -203,6 +209,61 @@ $trailer = $jogo ? buscarTrailerJogo($jogo['name']) : null;
 
                         </section>
 
+
+                        <section class="lista-avaliacoes">
+
+                            <h2>Avaliações da comunidade</h2>
+
+                            <?php if (!empty($avaliacoes)): ?>
+
+                                <?php foreach ($avaliacoes as $avaliacao): ?>
+
+                                    <article class="card-avaliacao">
+
+                                        <div class="avaliacao-cabecalho">
+
+                                            <strong>
+                                                <?= htmlspecialchars($avaliacao['usuario']) ?>
+                                            </strong>
+
+                                            <span>
+                                                <?= number_format($avaliacao['nota'], 1, ',', '.') ?> / 5
+                                            </span>
+
+                                        </div>
+
+                                        <?php if (!empty($avaliacao['comentario'])): ?>
+
+                                            <p>
+                                                <?= nl2br(htmlspecialchars($avaliacao['comentario'])) ?>
+                                            </p>
+
+                                        <?php else: ?>
+
+                                            <p class="sem-comentario">
+                                                Este usuário não deixou um comentário.
+                                            </p>
+
+                                        <?php endif; ?>
+
+                                        <small>
+                                            <?= date('d/m/Y', strtotime($avaliacao['data_avaliacao'])) ?>
+                                        </small>
+
+                                    </article>
+
+                                <?php endforeach; ?>
+
+                            <?php else: ?>
+
+                                <p class="sem-avaliacoes">
+                                    Ainda não existem avaliações para este jogo.
+                                    Que tal ser o primeiro?
+                                </p>
+
+                            <?php endif; ?>
+
+                        </section>
 
                     </div>
 

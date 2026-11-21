@@ -35,4 +35,27 @@ class Avaliacao
             ':comentario' => $comentario
         ]);
     }
+
+
+    public function buscarPorJogo($jogoId)
+    {
+        $sql = "SELECT
+                avaliacoes.nota,
+                avaliacoes.comentario,
+                avaliacoes.data_avaliacao,
+                usuarios.usuario
+            FROM avaliacoes
+            INNER JOIN usuarios
+                ON avaliacoes.usuario_id = usuarios.id
+            WHERE avaliacoes.jogo_id = :jogo_id
+            ORDER BY avaliacoes.data_avaliacao DESC";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':jogo_id' => $jogoId
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -289,3 +289,63 @@
 .estrelas button:hover {
     transform: scale(1.15);
 }
+
+
+/* LISTA DE AVALIAÇÕES */
+
+.lista-avaliacoes {
+    margin-top: 30px;
+    padding: 28px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+}
+
+.lista-avaliacoes h2 {
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.card-avaliacao {
+    padding: 20px;
+    margin-bottom: 16px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.avaliacao-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.avaliacao-cabecalho strong {
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.avaliacao-cabecalho span {
+    color: var(--purple-light);
+    font-weight: 700;
+}
+
+.card-avaliacao p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.card-avaliacao small {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.sem-comentario,
+.sem-avaliacoes {
+    color: var(--text-secondary);
+    font-style: italic;
+}
