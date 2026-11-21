@@ -32,8 +32,9 @@ campoBusca.addEventListener('input', function () {
             } else {
 
                 jogos.forEach(function (jogo) {
-                    const item = document.createElement('div');
+                    const item = document.createElement('a');
                     item.classList.add('resultado-item');
+                    item.href = `/frontend/jogo.php?id=${encodeURIComponent(jogo.id)}`;
 
                     // Capa do jogo
                     const imagem = document.createElement('img');

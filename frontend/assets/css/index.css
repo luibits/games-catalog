@@ -291,3 +291,13 @@ body {
     height: 15px;
     color: #FBBF24;
 }
+
+.link-card-jogo {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-card-jogo:hover {
+    color: inherit;
+}

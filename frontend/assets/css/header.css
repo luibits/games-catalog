@@ -180,9 +180,7 @@
     background-color: var(--purple-primary);
 }
 
-/* =========================
-   USUÁRIO
-========================= */
+/*  USUÁRIO */
 
 .header-usuario {
     display: flex;
@@ -207,4 +205,9 @@
 .usuario-avatar svg {
     width: 19px;
     height: 19px;
+}
+
+.resultado-item {
+    text-decoration: none;
+    color: inherit;
 }

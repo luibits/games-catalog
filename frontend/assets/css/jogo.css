@@ -1,0 +1,182 @@
+
+.detalhes-jogo {
+    width: 100%;
+    max-width: 1100px;
+    margin: 30px auto;
+    color: var(--text-primary);
+}
+
+/* BANNER */
+
+.jogo-banner {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 16px;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.jogo-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+}
+
+/* CONTEÚDO */
+
+.jogo-conteudo {
+    padding: 28px 5px;
+}
+
+.jogo-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.jogo-tag {
+    color: var(--purple-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.jogo-cabecalho h1 {
+    font-size: 34px;
+    margin: 8px 0 0;
+}
+
+/* NOTA */
+
+.jogo-nota {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 12px 17px;
+    border-radius: 12px;
+    color: #FBBF24;
+}
+
+.jogo-nota svg {
+    width: 19px;
+    fill: rgba(251, 191, 36, .2);
+}
+
+.jogo-nota strong {
+    font-size: 19px;
+}
+
+.jogo-nota span {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+/* GÊNEROS */
+
+.jogo-generos,
+.lista-plataformas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.jogo-generos span,
+.lista-plataformas span {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--purple-light);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* METADADOS */
+
+.jogo-metadados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.metadado {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 19px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    min-width: 0;
+}
+
+.metadado svg {
+    width: 21px;
+    height: 21px;
+    color: var(--purple-light);
+    flex-shrink: 0;
+}
+
+.metadado div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.metadado span {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.metadado strong {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+/* PLATAFORMAS */
+
+.jogo-plataformas h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 750px) {
+    .jogo-banner {
+        height: 230px;
+    }
+
+    .jogo-cabecalho {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .jogo-cabecalho h1 {
+        font-size: 26px;
+    }
+
+    .jogo-metadados {
+        grid-template-columns: 1fr;
+    }
+}
+.jogo-descricao {
+    margin-top: 35px;
+}
+
+.jogo-descricao h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.jogo-descricao p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 1000px;
+}

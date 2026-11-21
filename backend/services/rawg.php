@@ -66,3 +66,35 @@ function buscarJogosPorNome($termo) {
 
     return $dados['results'] ?? [];
 }
+
+
+function buscarJogoPorId($id) {
+
+    $apiKey = getenv('RAWG_API_KEY');
+
+    // Verifica se o ID é válido
+    if (!filter_var($id, FILTER_VALIDATE_INT) || $id <= 0) {
+        return null;
+    }
+
+    // Monta a URL da API
+    $url = 'https://api.rawg.io/api/games/' . $id . '?' . http_build_query([
+        'key' => $apiKey
+    ]);
+
+    // Faz a requisição
+    $resposta = @file_get_contents($url);
+
+    if ($resposta === false) {
+        return null;
+    }
+
+    // Converte o JSON em array PHP
+    $dados = json_decode($resposta, true);
+
+    if (!is_array($dados) || isset($dados['detail'])) {
+        return null;
+    }
+
+    return $dados;
+}
