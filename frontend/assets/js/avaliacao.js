@@ -65,3 +65,6 @@ botoes.forEach((botao) => {
 estrelas.addEventListener('pointerleave', () => {
     atualizarEstrelas(Number(campoNota.value) || 0);
 });
+
+// Carrega a nota já salva, caso exista
+atualizarEstrelas(Number(campoNota.value) || 0);

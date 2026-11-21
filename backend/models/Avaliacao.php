@@ -58,4 +58,22 @@ class Avaliacao
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function buscarPorUsuarioEJogo($usuarioId, $jogoId)
+    {
+        $sql = "SELECT nota, comentario
+            FROM avaliacoes
+            WHERE usuario_id = :usuario_id
+            AND jogo_id = :jogo_id";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':usuario_id' => $usuarioId,
+            ':jogo_id' => $jogoId
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

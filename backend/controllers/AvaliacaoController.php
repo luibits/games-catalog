@@ -35,4 +35,12 @@ class AvaliacaoController
     {
         return $this->avaliacao->buscarPorJogo($jogoId);
     }
+
+    public function buscarPorUsuarioEJogo($usuarioId, $jogoId)
+    {
+        return $this->avaliacao->buscarPorUsuarioEJogo(
+            $usuarioId,
+            $jogoId
+        );
+    }
 }

@@ -12,11 +12,19 @@ $idJogo = $_GET['id'] ?? null;
 $jogo = $idJogo ? buscarJogoPorId($idJogo) : null;
 $trailer = $jogo ? buscarTrailerJogo($jogo['name']) : null;
 $avaliacoes = [];
+$minhaAvaliacao = null;
 
 if ($jogo) {
     $controller = new AvaliacaoController($pdo);
+
     $avaliacoes = $controller->buscarPorJogo($jogo['id']);
+
+    $minhaAvaliacao = $controller->buscarPorUsuarioEJogo(
+        $_SESSION['usuario_id'],
+        $jogo['id']
+    );
 }
+
 ?>
 
 
@@ -169,7 +177,9 @@ if ($jogo) {
 
                         <section class="jogo-avaliacao">
 
-                            <h2>Avalie este jogo</h2>
+                            <h2>
+                                <?= $minhaAvaliacao ? 'Edite sua avaliação' : 'Avalie este jogo' ?>
+                            </h2>
 
                             <form action="../backend/routes/salvar_avaliacao.php" method="POST">
 
@@ -190,7 +200,9 @@ if ($jogo) {
                                         <button type="button" data-nota="5">★</button>
                                     </div>
 
-                                    <input type="hidden" name="nota" id="nota" required>
+                                    <input type="hidden" name="nota" id="nota"
+                                        value="<?= htmlspecialchars($minhaAvaliacao['nota'] ?? '') ?>"
+                                        required>
                                 </div>
 
                                 <div class="campo-avaliacao">
@@ -200,10 +212,14 @@ if ($jogo) {
                                         name="comentario"
                                         id="comentario"
                                         placeholder="O que você achou deste jogo?"
-                                        rows="4"></textarea>
+                                        rows="4"
+                                        style="direction: ltr !important; text-align: left !important; unicode-bidi: plaintext;"><?= htmlspecialchars($minhaAvaliacao['comentario'] ?? '') ?>
+                                    </textarea>
                                 </div>
 
-                                <button type="submit">Enviar avaliação</button>
+                                <button type="submit">
+                                    <?= $minhaAvaliacao ? 'Atualizar avaliação' : 'Enviar avaliação' ?>
+                                </button>
 
                             </form>
 
