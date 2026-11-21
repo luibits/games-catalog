@@ -116,12 +116,11 @@ if (formularioAvaliacao) {
     }
 
     // Confirmação antes de excluir a avaliação
+    const botaoExcluir = document.getElementById('botaoExcluirAvaliacao');
     const formularioExcluir = document.getElementById('formExcluirAvaliacao');
 
-    if (formularioExcluir) {
-        formularioExcluir.addEventListener('submit', async (evento) => {
-            evento.preventDefault();
-
+    if (botaoExcluir && formularioExcluir) {
+        botaoExcluir.addEventListener('click', async () => {
             const confirmou = await abrirModalConfirmacao(
                 'Excluir avaliação',
                 'Tem certeza de que deseja excluir sua avaliação? Essa ação não poderá ser desfeita.',

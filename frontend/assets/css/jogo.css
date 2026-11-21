@@ -206,6 +206,9 @@
 }
 
 
+
+/* AVALIAÇÃO */
+
 .jogo-avaliacao {
     margin-top: 40px;
     padding: 28px;
@@ -227,9 +230,37 @@
     margin-bottom: 20px;
 }
 
-.campo-avaliacao label {
-    color: var(--text-primary);
-    font-weight: 500;
+/* Centralização da nota e estrelas */
+.campo-avaliacao:first-child {
+    align-items: center;
+}
+
+.titulo-nota {
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.estrelas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.estrelas button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 38px;
+    line-height: 1;
+    color: #514b60;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.estrelas button:hover {
+    transform: scale(1.15);
 }
 
 .campo-avaliacao select,
@@ -254,10 +285,18 @@
     direction: ltr;
 }
 
-.jogo-avaliacao form>button[type="submit"] {
+/* BOTÕES */
+
+.acoes-avaliacao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.acoes-avaliacao button {
+    flex: 1;
     padding: 12px 22px;
-    background: var(--purple-primary);
-    color: white;
     border: none;
     border-radius: 8px;
     font-weight: 600;
@@ -265,31 +304,35 @@
     transition: background 0.2s ease;
 }
 
-.jogo-avaliacao form>button[type="submit"]:hover {
+/* Botão enviar / atualizar */
+.acoes-avaliacao button[type="submit"] {
+    background: var(--purple-primary);
+    color: white;
+}
+
+.acoes-avaliacao button[type="submit"]:hover {
     background: var(--purple-hover);
 }
 
-/* AVALIAÇÃO POR ESTRELAS */
-
-.estrelas {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+/* Botão excluir */
+.acoes-avaliacao .botao-excluir-avaliacao {
+    background: var(--bg-tertiary);
+    color: white;
 }
 
-.estrelas button {
-    padding: 0;
-    border: none;
-    background: transparent;
-    font-size: 38px;
-    line-height: 1;
-    color: #514b60;
-    cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
+.acoes-avaliacao .botao-excluir-avaliacao:hover {
+    filter: brightness(1.2);
 }
 
-.estrelas button:hover {
-    transform: scale(1.15);
+/* Responsividade */
+@media (max-width: 500px) {
+    .acoes-avaliacao {
+        flex-direction: column;
+    }
+
+    .acoes-avaliacao button {
+        width: 100%;
+    }
 }
 
 
@@ -351,3 +394,20 @@
     color: var(--text-secondary);
     font-style: italic;
 }
+
+/* Centralização da nota e das estrelas */
+.campo-avaliacao:first-child {
+    text-align: center;
+}
+
+.campo-avaliacao:first-child label {
+    display: block;
+    text-align: center;
+}
+
+.campo-avaliacao:first-child .estrelas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

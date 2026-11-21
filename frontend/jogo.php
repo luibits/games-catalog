@@ -177,22 +177,25 @@ if ($jogo) {
                         </section>
 
 
+
                         <section class="jogo-avaliacao">
 
                             <h2>
                                 <?= $minhaAvaliacao ? 'Edite sua avaliação' : 'Avalie este jogo' ?>
                             </h2>
 
-                            <form action="../backend/routes/salvar_avaliacao.php" method="POST" data-editar="<?= $minhaAvaliacao ? 'true' : 'false' ?>">
+                            <form
+                                action="../backend/routes/salvar_avaliacao.php"
+                                method="POST"
+                                data-editar="<?= $minhaAvaliacao ? 'true' : 'false' ?>">
 
                                 <input
                                     type="hidden"
                                     name="jogo_id"
                                     value="<?= htmlspecialchars($jogo['id']) ?>">
 
-
                                 <div class="campo-avaliacao">
-                                    <label>Sua nota</label>
+                                    <label class="titulo-nota">Sua nota</label>
 
                                     <div class="estrelas" id="estrelas">
                                         <button type="button" data-nota="1">★</button>
@@ -202,7 +205,10 @@ if ($jogo) {
                                         <button type="button" data-nota="5">★</button>
                                     </div>
 
-                                    <input type="hidden" name="nota" id="nota"
+                                    <input
+                                        type="hidden"
+                                        name="nota"
+                                        id="nota"
                                         value="<?= htmlspecialchars($minhaAvaliacao['nota'] ?? '') ?>"
                                         required>
                                 </div>
@@ -215,18 +221,29 @@ if ($jogo) {
                                         id="comentario"
                                         placeholder="O que você achou deste jogo?"
                                         rows="4"
-                                        style="direction: ltr !important; text-align: left !important; unicode-bidi: plaintext;"><?= htmlspecialchars($minhaAvaliacao['comentario'] ?? '') ?>
-                                    </textarea>
+                                        style="direction: ltr !important; text-align: left !important; unicode-bidi: plaintext;"><?= htmlspecialchars($minhaAvaliacao['comentario'] ?? '') ?></textarea>
                                 </div>
 
-                                <button type="submit">
-                                    <?= $minhaAvaliacao ? 'Atualizar avaliação' : 'Enviar avaliação' ?>
-                                </button>
+                                <div class="acoes-avaliacao">
+
+                                    <button type="submit">
+                                        <?= $minhaAvaliacao ? 'Atualizar avaliação' : 'Enviar avaliação' ?>
+                                    </button>
+
+                                    <?php if ($minhaAvaliacao): ?>
+                                        <button
+                                            type="button"
+                                            class="botao-excluir-avaliacao"
+                                            id="botaoExcluirAvaliacao">
+                                            Excluir avaliação
+                                        </button>
+                                    <?php endif; ?>
+
+                                </div>
 
                             </form>
 
                             <?php if ($minhaAvaliacao): ?>
-
                                 <form
                                     action="../backend/routes/excluir_avaliacao.php"
                                     method="POST"
@@ -237,12 +254,7 @@ if ($jogo) {
                                         name="jogo_id"
                                         value="<?= htmlspecialchars($jogo['id']) ?>">
 
-                                    <button type="submit" class="botao-excluir-avaliacao">
-                                        Excluir avaliação
-                                    </button>
-
                                 </form>
-
                             <?php endif; ?>
 
                         </section>
