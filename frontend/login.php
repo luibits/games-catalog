@@ -133,6 +133,7 @@
 
     <script>lucide.createIcons();</script>
     <script src="/frontend//assets/js/notificacao.js"></script>
+    <script src="assets/js/scroll.js"></script>
 
 </body>
 

@@ -337,6 +337,7 @@ if ($jogo) {
     <script>
         lucide.createIcons();
     </script>
+     <script src="assets/js/scroll.js"></script>
     <script src="/frontend/assets/js/avaliacao.js"></script>
     <script src="/frontend/assets/js/modal_confirmacao.js"></script>
     <script src="/frontend/assets/js/notificacao.js"></script>
