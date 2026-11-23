@@ -86,3 +86,50 @@
     padding-top: 15px;
     border-top: 1px solid var(--border-color);
 }
+
+@media (max-width: 760px) {
+    .sidebar {
+        top: auto;
+        bottom: 0;
+        z-index: 1000;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: center;
+        width: 100%;
+        height: auto;
+        padding: 7px 10px calc(7px + env(safe-area-inset-bottom));
+        border-top: 1px solid var(--border-color);
+        border-right: 0;
+    }
+
+    .sidebar-logo {
+        display: none;
+    }
+
+    .sidebar-menu {
+        grid-column: span 4;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 4px;
+    }
+
+    .sidebar-link {
+        justify-content: center;
+        padding: 8px 2px;
+    }
+
+    .sidebar-link span {
+        display: none;
+    }
+
+    .sidebar-link svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .sidebar-footer {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+}

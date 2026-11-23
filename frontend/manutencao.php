@@ -75,6 +75,7 @@ $tituloPagina = $paginas[$pagina] ?? 'Página em manutenção';
     <script>
         lucide.createIcons();
     </script>
-
+    <script src="/frontend/assets/js/pesquisa.js"></script>
+    
 </body>
 </html>

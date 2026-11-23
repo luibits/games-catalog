@@ -340,6 +340,7 @@ if ($jogo) {
     <script src="/frontend/assets/js/avaliacao.js"></script>
     <script src="/frontend/assets/js/modal_confirmacao.js"></script>
     <script src="/frontend/assets/js/notificacao.js"></script>
+    <script src="/frontend/assets/js/pesquisa.js"></script>
     <script>
         const parametros = new URLSearchParams(window.location.search);
         const status = parametros.get('avaliacao');

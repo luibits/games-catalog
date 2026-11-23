@@ -2,6 +2,17 @@
 const campoBusca = document.querySelector('#campo-busca');
 const resultadosBusca = document.querySelector('#resultados-busca');
 
+// Fecha a prévia ao clicar fora da pesquisa
+document.addEventListener('click', function (evento) {
+
+    const clicouNaPesquisa = campoBusca.contains(evento.target);
+    const clicouNosResultados = resultadosBusca.contains(evento.target);
+
+    if (!clicouNaPesquisa && !clicouNosResultados) {
+        resultadosBusca.style.display = 'none';
+    }
+
+});
 let temporizador;
 
 campoBusca.addEventListener('input', function () {
@@ -34,7 +45,9 @@ campoBusca.addEventListener('input', function () {
                 jogos.forEach(function (jogo) {
                     const item = document.createElement('a');
                     item.classList.add('resultado-item');
-                    item.href = `/frontend/jogo.php?id=${encodeURIComponent(jogo.id)}`;
+                    const termoBusca = campoBusca.value.trim();
+
+                    item.href = `/frontend/jogo.php?id=${encodeURIComponent(jogo.id)}&busca=${encodeURIComponent(termoBusca)}`;
 
                     // Capa do jogo
                     const imagem = document.createElement('img');

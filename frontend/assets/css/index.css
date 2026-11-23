@@ -4,6 +4,7 @@
     --bg-secondary: #191820;
     --purple-primary: #8B5CF6;
     --purple-hover: #7C3AED;
+    --purple-light: #A78BFA;
     --text-primary: #EDEAF5;
     --text-secondary: #A5A1B2;
     --border-color: #302D3B;
@@ -38,7 +39,7 @@ body {
 /* Conteúdo abaixo do cabeçalho */
 
 .conteudo {
-    padding: 35px;
+    padding: clamp(16px, 4vw, 35px);
 }
 
 
@@ -47,7 +48,7 @@ body {
     min-height: 350px;
     display: flex;
     align-items: center;
-    padding: 45px;
+    padding: clamp(24px, 4vw, 45px);
     overflow: hidden;
     border-radius: 8px;
 
@@ -70,15 +71,16 @@ body {
 
 .banner-info {
     position: absolute;
-    right: 45px;
-    bottom: 35px;
+    right: 35px;
+    bottom: 25px;
 
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 12px;
+    gap: 8px;
 
     z-index: 2;
+    isolation: isolate;
 
     opacity: 0;
     visibility: hidden;
@@ -94,14 +96,6 @@ body {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-}
-
-/* Informações do jogo */
-.banner-info {
-    right: 35px;
-    bottom: 25px;
-    gap: 8px;
-    isolation: isolate;
 }
 
 /* Fumacinha escura */
@@ -148,6 +142,34 @@ body {
     font-size: 11px;
     color: var(--text-secondary);
     font-weight: 500;
+}
+
+.banner-conteudo {
+    position: relative;
+    z-index: 1;
+    width: min(600px, 100%);
+}
+
+.banner-tag {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--purple-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.banner-conteudo h1 {
+    margin-bottom: 12px;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.15;
+}
+
+.banner-conteudo p {
+    max-width: 520px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
 }
 
 /* Botão explorar catálogo */
@@ -301,4 +323,54 @@ body {
 
 .link-card-jogo:hover {
     color: inherit;
+}
+
+@media (max-width: 1100px) {
+    .catalogo-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 850px) {
+    .catalogo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .conteudo-principal {
+        width: 100%;
+        margin-left: 0;
+        padding-bottom: calc(68px + env(safe-area-inset-bottom));
+    }
+
+    .banner-destaque {
+        min-height: 360px;
+        align-items: flex-start;
+        padding-bottom: 112px;
+    }
+
+    .banner-info {
+        right: 20px;
+        bottom: 18px;
+        left: 20px;
+        align-items: flex-start;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .banner-generos {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+    .catalogo-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .catalogo-cabecalho h2 {
+        font-size: 20px;
+    }
 }
