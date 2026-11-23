@@ -19,8 +19,9 @@ $tituloPagina = $paginas[$pagina] ?? 'Página em manutenção';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/frontend/assets/favicon/favicon.ico" type="image/x-icon">
 
-    <title><?= htmlspecialchars($tituloPagina) ?> | Checkpoint</title>
+    <title><?= htmlspecialchars($tituloPagina) ?></title>
 
     <link rel="stylesheet" href="/frontend/assets/css/index.css">
     <link rel="stylesheet" href="/frontend/assets/css/header.css">
