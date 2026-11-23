@@ -1,4 +1,3 @@
-
 <?php
 
 $apiKeys = require __DIR__ . '/../config/api_keys.php';

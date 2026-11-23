@@ -1,0 +1,80 @@
+<?php
+
+require_once __DIR__ . '/../backend/auth/verificar_login.php';
+
+$paginas = [
+    'biblioteca' => 'Minha biblioteca',
+    'desejos' => 'Lista de desejos',
+    'perfil' => 'Meu perfil'
+];
+
+$pagina = $_GET['pagina'] ?? 'biblioteca';
+$tituloPagina = $paginas[$pagina] ?? 'Página em manutenção';
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><?= htmlspecialchars($tituloPagina) ?> | Checkpoint</title>
+
+    <link rel="stylesheet" href="/frontend/assets/css/index.css">
+    <link rel="stylesheet" href="/frontend/assets/css/header.css">
+    <link rel="stylesheet" href="/frontend/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/frontend/assets/css/manutencao.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <?php include __DIR__ . '/components/sidebar.php'; ?>
+
+    <div class="conteudo-principal">
+
+        <?php include __DIR__ . '/components/header.php'; ?>
+
+        <main class="conteudo manutencao-container">
+
+            <section class="manutencao-card">
+
+                <div class="manutencao-icone">
+                    <i data-lucide="construction"></i>
+                </div>
+
+                <span class="manutencao-tag">EM DESENVOLVIMENTO</span>
+
+                <h1>Página em manutenção</h1>
+
+                <p>
+                    Estamos trabalhando para trazer
+                    <strong><?= htmlspecialchars($tituloPagina) ?></strong>
+                    para você.
+                </p>
+
+                <p class="manutencao-descricao">
+                    Essa funcionalidade estará disponível em breve.
+                    Agradecemos pela compreensão!
+                </p>
+
+                <a href="/frontend/index.php" class="botao-voltar">
+                    <i data-lucide="arrow-left"></i>
+                    Voltar ao início
+                </a>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

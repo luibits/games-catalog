@@ -27,6 +27,7 @@ if (!empty($termoBusca)) {
     <link rel="stylesheet" href="/frontend/assets/css/index.css">
     <link rel="stylesheet" href="/frontend/assets/css/header.css">
     <link rel="stylesheet" href="/frontend/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/frontend/assets/css/modal_confirmacao.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -149,11 +150,15 @@ if (!empty($termoBusca)) {
 
     </div>
 
+    <?php include __DIR__ . '/components/modal_confirmacao.php'; ?>
+   
+
     <script>
         lucide.createIcons();
     </script>
     <script src="assets/js/scroll.js"></script>
     <script src="assets/js/pesquisa.js"></script>
+    <script src="/frontend/assets/js/modal_confirmacao.js?v=2"></script>
 
 </body>
 

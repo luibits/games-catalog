@@ -1,0 +1,229 @@
+
+.manutencao-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Iluminação de fundo */
+
+.manutencao-container::before,
+.manutencao-container::after {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.manutencao-container::before {
+    background: #9147ff;
+    top: 5%;
+    left: 10%;
+}
+
+.manutencao-container::after {
+    background: #5b36bd;
+    bottom: 0;
+    right: 8%;
+}
+
+/* Card principal */
+
+.manutencao-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 620px;
+    padding: 65px 45px;
+    text-align: center;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35, 31, 49, 0.98),
+            rgba(23, 22, 31, 0.98)
+        );
+
+    border: 1px solid rgba(160, 120, 255, 0.16);
+    border-radius: 10px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Detalhe superior */
+
+.manutencao-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #9257ff,
+        #c29aff,
+        transparent
+    );
+}
+
+/* Decoração do card */
+
+.manutencao-card::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -120px;
+    right: -100px;
+    border: 1px solid rgba(160, 120, 255, 0.12);
+    border-radius: 50%;
+    box-shadow: 0 0 0 25px rgba(160, 120, 255, 0.025),
+                0 0 0 50px rgba(160, 120, 255, 0.02);
+    pointer-events: none;
+}
+
+/* Ícone */
+
+.manutencao-icone {
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #b68aff;
+    background: rgba(145, 71, 255, 0.12);
+    border: 1px solid rgba(165, 120, 255, 0.25);
+    border-radius: 50%;
+
+    box-shadow: 0 0 45px rgba(145, 71, 255, 0.12);
+}
+
+.manutencao-icone i {
+    width: 48px;
+    height: 48px;
+    stroke-width: 1.5;
+}
+
+/* Tag */
+
+.manutencao-tag {
+    display: inline-block;
+    padding: 8px 14px;
+
+    color: #bd9aff;
+    background: rgba(145, 71, 255, 0.10);
+    border: 1px solid rgba(145, 71, 255, 0.18);
+    border-radius: 30px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Textos */
+
+.manutencao-card h1 {
+    margin: 22px 0 14px;
+    color: var(--text-primary);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.manutencao-card p {
+    max-width: 440px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.manutencao-card p strong {
+    color: #c5a5ff;
+    font-weight: 600;
+}
+
+.manutencao-descricao {
+    margin-top: 8px !important;
+    font-size: 13px !important;
+}
+
+/* Botão */
+
+.botao-voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 35px;
+    padding: 14px 25px;
+
+    color: #fff;
+    background: linear-gradient(135deg, #9657ff, #7540d6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 5px;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 650;
+
+    box-shadow: 0 8px 25px rgba(130, 70, 230, 0.22);
+    transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+}
+
+.botao-voltar:hover {
+    color: #fff;
+    filter: brightness(1.12);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(130, 70, 230, 0.35);
+}
+
+.botao-voltar i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Responsividade */
+
+@media (max-width: 600px) {
+    .manutencao-container {
+        padding: 30px 18px;
+    }
+
+    .manutencao-card {
+        padding: 45px 22px;
+        border-radius: 19px;
+    }
+
+    .manutencao-icone {
+        width: 85px;
+        height: 85px;
+        border-radius: 24px;
+    }
+
+    .manutencao-icone i {
+        width: 40px;
+        height: 40px;
+    }
+
+    .manutencao-card h1 {
+        font-size: 26px;
+    }
+}
